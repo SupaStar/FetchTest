@@ -13,7 +13,7 @@ import SwiftUI
 struct FetchTestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewModel: IndexViewModel())
         }
     }
 }
