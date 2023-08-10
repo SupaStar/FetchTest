@@ -12,6 +12,8 @@ import SwiftUI
 struct ImageView: View {
     // MARK: PROPERTIES
     let url: String
+    let width: Double
+    let height: Double
     // MARK: BODY
     var body: some View {
         AsyncImage(url: URL(string: url)) { phase in
@@ -20,9 +22,10 @@ struct ImageView: View {
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
+                    .frame(width: width, height: height)
             case .empty:
-                Text("Cargando...")
+                ProgressView()
+                Text("Cargando")
             case .failure(_):
                 Text("Error al cargar la imagen")
             @unknown default:
@@ -34,6 +37,6 @@ struct ImageView: View {
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(url: "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg")
+        ImageView(url: "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", width: 100.0, height: 100.0)
     }
 }

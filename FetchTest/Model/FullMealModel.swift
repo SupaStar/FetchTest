@@ -50,16 +50,27 @@ struct FullMealModel: Decodable {
         strCreativeCommonsConfirmed = try container.decodeIfPresent(String.self, forKey: .strCreativeCommonsConfirmed)
         dateModified = try container.decodeIfPresent(String.self, forKey: .dateModified)
         
-        let ingredientKeys = (1...20).map { FullMealModel.CodingKeys(rawValue: "strIngredient\($0)") }
-        strIngredients = ingredientKeys.compactMap { key in
-            return try? container.decode(String.self, forKey: key!)
+        // Decodificación de ingredientes
+        var ingredientKeys = (1...20).map { FullMealModel.CodingKeys(rawValue: "strIngredient\($0)") }
+        strIngredients = []
+        for key in ingredientKeys {
+            if let ingredient = try? container.decode(String.self, forKey: key!), !ingredient.isEmpty {
+                strIngredients.append(ingredient)
+            } else {
+                break
+            }
         }
 
-        let measureKeys = (1...20).map { FullMealModel.CodingKeys(rawValue: "strMeasure\($0)") }
-        strMeasures = measureKeys.compactMap { key in
-            return try? container.decode(String.self, forKey: key!)
+        // Decodificación de medidas
+        var measureKeys = (1...20).map { FullMealModel.CodingKeys(rawValue: "strMeasure\($0)") }
+        strMeasures = []
+        for key in measureKeys {
+            if let measure = try? container.decode(String.self, forKey: key!), !measure.isEmpty {
+                strMeasures.append(measure)
+            } else {
+                break
+            }
         }
-
     }
 }
 

@@ -13,14 +13,23 @@ struct DetailMealView: View {
     // MARK: PROPERTIES
     let mealId: String
     @ObservedObject var viewModel: DetailViewModel
-
+    
     // MARK: BODY
     var body: some View {
-        VStack {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-        }
-        .onAppear{
-            viewModel.loadMeal(mealId: mealId)
+        ScrollView(.vertical, showsIndicators: false) {
+            VStack {
+                // MARK: Header
+                HeaderDetailView(meal: viewModel.meal)
+                    .padding(.horizontal)
+                // MARK: Ingredients
+                IngredientsView(meal: viewModel.meal)
+                    .padding(.vertical, 10)
+                // MARK: Instructions
+                InstructionsView(meal: viewModel.meal)
+            }//: VSTACK
+            .onAppear{
+                viewModel.loadMeal(mealId: mealId)
+            }
         }
     }
 }

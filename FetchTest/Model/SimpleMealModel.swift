@@ -15,9 +15,9 @@ struct SimpleMealModel: Decodable {
     var strMeal: String
     
     enum CodingKeys: String, CodingKey {
-      case idMeal = "idMeal"
-      case strMealThumb = "strMealThumb"
-      case strMeal = "strMeal"
+        case idMeal = "idMeal"
+        case strMealThumb = "strMealThumb"
+        case strMeal = "strMeal"
     }
 }
 
@@ -25,18 +25,26 @@ struct SimpleMealResponse: Decodable {
     var meals: [SimpleMealModel]
     
     enum CodingKeys: String, CodingKey {
-      case meals = "meals"
+        case meals = "meals"
     }
 }
 
 class SimpleMealViewModel: Identifiable, ObservableObject {
-  let idMeal: String
-  let strMealThumb: String
-  let strMeal: String
-  
-  init(meal: SimpleMealModel) {
-    self.idMeal = meal.idMeal
-    self.strMealThumb = meal.strMealThumb
-    self.strMeal = meal.strMeal
-  }
+    let idMeal: String
+    let strMealThumb: String
+    let strMeal: String
+    
+    var truncatedTitle: String {
+        let maxLength = 20
+        if strMeal.count >= maxLength {
+            let truncatedText = self.strMeal.prefix(maxLength)
+            return "\(truncatedText)..."
+        }
+        return self.strMeal
+    }
+    init(meal: SimpleMealModel) {
+        self.idMeal = meal.idMeal
+        self.strMealThumb = meal.strMealThumb
+        self.strMeal = meal.strMeal
+    }
 }
