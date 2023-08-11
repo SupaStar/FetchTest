@@ -11,20 +11,20 @@ import SwiftUI
 
 struct HeaderDetailView: View {
     // MARK: PROPERTIES
-    let meal: FullMealViewModel?
+    let meal: FullMealViewModel
     // MARK: BODY
     var body: some View {
         HStack(alignment: .center, content: {
             VStack(alignment:.leading, spacing: 10, content: {
-                Text("\(meal?.strMeal ?? "Pruebota")")
+                Text("\(meal.strMeal)")
                     .font(.title)
-                Text("\(meal?.strCategory ?? "Prueba")")
+                Text("\(meal.strCategory)")
                     .font(.title3)
-                Text("\(meal?.strArea ?? "Area")")
+                Text("\(meal.strArea)")
                     .font(.callout)
             })//: VSTACK
             Spacer()
-            ImageView(url: meal?.strMealThumb ?? "", width: 160.0, height: 160.0)
+            ImageView(url: meal.strMealThumb, width: 160.0, height: 160.0)
         })//: HSTACK
         .padding()
     }
@@ -32,7 +32,8 @@ struct HeaderDetailView: View {
 
 struct HeaderDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderDetailView(meal: nil)
+        let meal: FullMealViewModel? = sampleFull()
+        HeaderDetailView(meal: meal!)
             .previewLayout(.sizeThatFits)
             .background(Color.gray)
     }

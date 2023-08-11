@@ -18,18 +18,20 @@ struct DetailMealView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                // MARK: Header
-                HeaderDetailView(meal: viewModel.meal)
-                    .padding(.horizontal)
-                // MARK: Ingredients
-                IngredientsView(meal: viewModel.meal)
-                    .padding(.vertical, 10)
-                // MARK: Instructions
-                InstructionsView(meal: viewModel.meal)
+                if let meal = viewModel.meal {
+                    // MARK: Header
+                    HeaderDetailView(meal: meal)
+                    
+                    // MARK: Ingredients
+                    IngredientsView(meal: meal)
+                        .padding(.vertical, 10)
+                    // MARK: Instructions
+                    InstructionsView(meal: meal)
+                }
             }//: VSTACK
-            .onAppear{
-                viewModel.loadMeal(mealId: mealId)
-            }
+        }//: SCROLL
+        .onAppear{
+            viewModel.loadMeal(mealId: mealId)
         }
     }
 }

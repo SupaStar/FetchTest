@@ -14,6 +14,7 @@ struct FetchTestApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(viewModel: IndexViewModel())
+                .preferredColorScheme(.light)
         }
     }
 }

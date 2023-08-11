@@ -10,27 +10,29 @@
 import SwiftUI
 
 struct ImageView: View {
-    // MARK: PROPERTIES
-    let url: String
     let width: Double
     let height: Double
-    // MARK: BODY
+    @StateObject private var imageLoader: ImageLoader
+    private var placeholder: Image
+    
+    init(url: String, width: Double, height: Double, placeholder: Image = Image(systemName: "photo")) {
+        self._imageLoader = StateObject(wrappedValue: ImageLoader(url: url))
+        self.placeholder = placeholder
+        self.height = height
+        self.width = width
+    }
+    
     var body: some View {
-        AsyncImage(url: URL(string: url)) { phase in
-            switch phase {
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: width, height: height)
-            case .empty:
-                ProgressView()
-                Text("Cargando")
-            case .failure(_):
-                Text("Error al cargar la imagen")
-            @unknown default:
-                Text("Error desconocido")
-            }
+        if let image = imageLoader.image {
+            Image(uiImage: image)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: width, height: height)
+        } else {
+            placeholder
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: width, height: height)
         }
     }
 }
