@@ -6,8 +6,42 @@
 	<dict>
 		<key>FetchTest.xcscheme_^#shared#^_</key>
 		<dict>
+			<key>isShown</key>
+			<true/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>FetchTestTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>FetchTestUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>09C399DD2A8437B900BBB01C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>09C399ED2A8437BA00BBB01C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>09C399F72A8437BA00BBB01C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

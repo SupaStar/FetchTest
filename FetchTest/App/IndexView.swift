@@ -28,10 +28,12 @@ struct ContentView: View {
                             SimpleMealCardView(
                                 simpleMeal: meal
                             )
+                            .accessibilityIdentifier("simpleMealCard")
                         }//: NAV
                     }//: FOR
                 }//: GRID
             }//: SCROLL
+            .navigationTitle("Meals List")
         }//: NAV
         .onAppear(perform: viewModel.loadMeals)
         .padding()
