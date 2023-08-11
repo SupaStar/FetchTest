@@ -28,12 +28,6 @@ var gridMealLayout: [GridItem] {
     return Array(repeating: GridItem(.flexible(), spacing: rowSpacing), count: 2)
 }
 
-// FUNCS
-func buildURL() -> URL? {
-    let components = URLComponents(string: baseURL)
-    return components?.url
-}
-
 //DATA
 func sampleMealSimple() -> SimpleMealViewModel {
     let sampleMeal = SimpleMealModel(idMeal: "123", strMealThumb: "https://www.themealdb.com/images/media/meals/adxcbq1619787919.jpg", strMeal: "Sample Meal")
